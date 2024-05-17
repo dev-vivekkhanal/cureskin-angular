@@ -1,0 +1,79 @@
+<main class="main-container font-notoSans">
+  <div class="content-container">
+    <section
+      *ngFor="let sectionData of pageData"
+      [attr.id]="sectionData.id"
+      class="sectionBoundaries"
+    >
+      <!-- using placeholder image -->
+      <div class="imgPlaceholder"></div>
+      <h1 class="card_heading">
+        {{ sectionData.heading }}
+      </h1>
+      <p class="card_content">
+        {{ sectionData.content }}
+      </p>
+      <div>
+        <!-- Main bar -->
+        <div class="main_bar_container">
+          <!-- Red zone 1 -->
+          <div
+            [style.background]="
+              sectionData.barPercent >= 26 && sectionData.barPercent <= 65
+                ? '#E0E0E0'
+                : '#F9E7D7'
+            "
+            class="red_zone"
+          ></div>
+          <!-- Green zone -->
+          <div
+            [style.background]="
+              sectionData.barPercent >= 26 && sectionData.barPercent <= 65
+                ? '#EBF1CE'
+                : '#E0E0E0'
+            "
+            class="green_zone"
+          >
+            <!-- Brackets -->
+            <div class="bracket left_bracket"></div>
+            <div class="bracket right_bracket"></div>
+          </div>
+          <!-- Red zone 2 -->
+          <div
+            [style.background]="
+              sectionData.barPercent >= 26 && sectionData.barPercent <= 65
+                ? '#E0E0E0'
+                : '#F9E7D7'
+            "
+            class="red_zone"
+          ></div>
+          <!-- Percentage pointer -->
+          <div
+            [style.left.%]="sectionData.barPercent"
+            [style.color]="getColors(sectionData.barPercent).pointerColor"
+            class="pointer_position"
+          >
+            <h3 class="pointer_text">You</h3>
+            <img
+              [src]="getColors(sectionData.barPercent).arrow"
+              alt="arrow"
+              class="pointer_arrow"
+            />
+            <div
+              [style.background]="
+                getColors(sectionData.barPercent).pointerColor
+              "
+              class="pointer_bar"
+            ></div>
+          </div>
+        </div>
+        <!-- Bottom text -->
+        <div class="bottom_text_container">
+          <span class="bottom_text_labels"> LOW </span>
+          <span class="estimated_label"> Estimated Range </span>
+          <span class="bottom_text_labels"> HIGH </span>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
